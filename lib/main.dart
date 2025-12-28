@@ -13,7 +13,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Blog Admin',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(useMaterial3: true),
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+        scaffoldBackgroundColor: Colors.grey.shade50,
+      ),
       home: const ArticleListPage(),
     );
   }

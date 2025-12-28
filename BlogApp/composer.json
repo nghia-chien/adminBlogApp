@@ -1,0 +1,14 @@
+{
+    "name": "buihungphat/blog-app",
+    "autoload": {
+        "psr-4": {
+            "Buihungphat\\BlogApp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Bùi Hưng Phát",
+            "email": "hungphatbui37@gmail.com"
+        }
+    ]
+}
