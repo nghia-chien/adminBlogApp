@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../models/article.dart';
 import '../services/api_service.dart';
 import '../widgets/image_picker_widget.dart';
+import '../widgets/category_selector.dart';
 
 class EditArticlePage extends StatefulWidget {
   final Article article;
@@ -188,65 +189,8 @@ class _EditArticlePageState extends State<EditArticlePage> {
               maxLines: 8,
             ),
             const SizedBox(height: 20),
-            DropdownButtonFormField<String>(
-              value: _selectedCategory,
-              decoration: const InputDecoration(
-                labelText: 'Danh mục',
-                hintText: 'Chọn danh mục',
-                prefixIcon: Icon(Icons.category_rounded),
-              ),
-              items: const [
-                DropdownMenuItem<String>(
-                  value: null,
-                  child: Row(
-                    children: [
-                      Text('📂'),
-                      SizedBox(width: 12),
-                      Text('Chưa chọn'),
-                    ],
-                  ),
-                ),
-                DropdownMenuItem<String>(
-                  value: 'Technology',
-                  child: Row(
-                    children: [
-                      Text('💻'),
-                      SizedBox(width: 12),
-                      Text('Technology'),
-                    ],
-                  ),
-                ),
-                DropdownMenuItem<String>(
-                  value: 'Business',
-                  child: Row(
-                    children: [
-                      Text('💼'),
-                      SizedBox(width: 12),
-                      Text('Business'),
-                    ],
-                  ),
-                ),
-                DropdownMenuItem<String>(
-                  value: 'Sports',
-                  child: Row(
-                    children: [
-                      Text('⚽'),
-                      SizedBox(width: 12),
-                      Text('Sports'),
-                    ],
-                  ),
-                ),
-                DropdownMenuItem<String>(
-                  value: 'Education',
-                  child: Row(
-                    children: [
-                      Text('📚'),
-                      SizedBox(width: 12),
-                      Text('Education'),
-                    ],
-                  ),
-                ),
-              ],
+            CategorySelector(
+              selectedCategory: _selectedCategory,
               onChanged: (value) {
                 setState(() {
                   _selectedCategory = value;

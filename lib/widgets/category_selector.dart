@@ -13,21 +13,10 @@ class CategorySelector extends StatelessWidget {
   });
 
   static const List<Map<String, String>> categories = [
-    {'id': 'Công nghệ', 'icon': '💻'},
-    {'id': 'Kinh doanh', 'icon': '💼'},
-    {'id': 'Giáo dục', 'icon': '📚'},
-    {'id': 'Sức khỏe', 'icon': '🏥'},
-    {'id': 'Lối sống', 'icon': '🌟'},
-    {'id': 'Du lịch', 'icon': '✈️'},
-    {'id': 'Ẩm thực', 'icon': '🍽️'},
-    {'id': 'Thể thao', 'icon': '⚽'},
-    {'id': 'Giải trí', 'icon': '🎬'},
-    {'id': 'Tin tức', 'icon': '📰'},
-    {'id': 'Khoa học', 'icon': '🔬'},
-    {'id': 'Nghệ thuật', 'icon': '🎨'},
-    {'id': 'Âm nhạc', 'icon': '🎵'},
-    {'id': 'Thời trang', 'icon': '👗'},
-    {'id': 'Khác', 'icon': '📂'},
+    {'id': 'Technology', 'icon': '💻'},
+    {'id': 'Business', 'icon': '💼'},
+    {'id': 'Sports', 'icon': '⚽'},
+    {'id': 'Education', 'icon': '📚'},
   ];
 
   static String? getIcon(String? categoryName) {
