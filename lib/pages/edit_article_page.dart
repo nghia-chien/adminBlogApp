@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../models/article.dart';
 import '../services/api_service.dart';
 import '../widgets/image_picker_widget.dart';
-import '../widgets/category_selector.dart';
 
 class EditArticlePage extends StatefulWidget {
   final Article article;
@@ -31,7 +30,27 @@ class _EditArticlePageState extends State<EditArticlePage> {
     _content = TextEditingController(text: widget.article.content);
     _author = TextEditingController(text: widget.article.author);
     _selectedImageBase64 = widget.article.imageUrl;
-    _selectedCategory = widget.article.category.isNotEmpty ? widget.article.category : null;
+    
+    // Map giá trị category cũ sang giá trị mới hoặc set null nếu không khớp
+    final category = widget.article.category;
+    final validCategories = ['Technology', 'Business', 'Sports', 'Education'];
+    
+    if (category.isNotEmpty && validCategories.contains(category)) {
+      _selectedCategory = category;
+    } else {
+      // Map các giá trị cũ sang giá trị mới
+      final categoryMap = {
+        'Công nghệ': 'Technology',
+        'Kinh doanh': 'Business',
+        'Thể thao': 'Sports',
+        'Giáo dục': 'Education',
+        'Technology': 'Technology',
+        'Business': 'Business',
+        'Sports': 'Sports',
+        'Education': 'Education',
+      };
+      _selectedCategory = categoryMap[category] ?? null;
+    }
   }
 
   @override
@@ -167,8 +186,65 @@ class _EditArticlePageState extends State<EditArticlePage> {
               maxLines: 8,
             ),
             const SizedBox(height: 20),
-            CategorySelector(
-              selectedCategory: _selectedCategory,
+            DropdownButtonFormField<String>(
+              value: _selectedCategory,
+              decoration: const InputDecoration(
+                labelText: 'Danh mục',
+                hintText: 'Chọn danh mục',
+                prefixIcon: Icon(Icons.category_rounded),
+              ),
+              items: const [
+                DropdownMenuItem<String>(
+                  value: null,
+                  child: Row(
+                    children: [
+                      Text('📂'),
+                      SizedBox(width: 12),
+                      Text('Chưa chọn'),
+                    ],
+                  ),
+                ),
+                DropdownMenuItem<String>(
+                  value: 'Technology',
+                  child: Row(
+                    children: [
+                      Text('💻'),
+                      SizedBox(width: 12),
+                      Text('Technology'),
+                    ],
+                  ),
+                ),
+                DropdownMenuItem<String>(
+                  value: 'Business',
+                  child: Row(
+                    children: [
+                      Text('💼'),
+                      SizedBox(width: 12),
+                      Text('Business'),
+                    ],
+                  ),
+                ),
+                DropdownMenuItem<String>(
+                  value: 'Sports',
+                  child: Row(
+                    children: [
+                      Text('⚽'),
+                      SizedBox(width: 12),
+                      Text('Sports'),
+                    ],
+                  ),
+                ),
+                DropdownMenuItem<String>(
+                  value: 'Education',
+                  child: Row(
+                    children: [
+                      Text('📚'),
+                      SizedBox(width: 12),
+                      Text('Education'),
+                    ],
+                  ),
+                ),
+              ],
               onChanged: (value) {
                 setState(() {
                   _selectedCategory = value;
