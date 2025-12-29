@@ -36,6 +36,7 @@ class _CreateArticlePageState extends State<CreateArticlePage> {
       'category': _selectedCategory ?? '',
       'author': _author.text.trim(),
       'imageUrl': _selectedImageBase64 ?? '',
+      'views': 0,
       'created_at': DateTime.now().toUtc().toIso8601String(),
     });
 
@@ -97,7 +98,7 @@ class _CreateArticlePageState extends State<CreateArticlePage> {
     final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: theme.colorScheme.background,
+      backgroundColor: theme.colorScheme.surface,
       appBar: AppBar(
         title: const Text(
           'Tạo Bài Viết Mới',

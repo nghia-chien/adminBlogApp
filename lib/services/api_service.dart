@@ -9,9 +9,9 @@ import 'package:flutter/foundation.dart';
 class ApiService {
   static String get baseUrl {
     if (kIsWeb ) {
-      return 'http://localhost:8080/BlogApp1/index.php';
+      return 'http://localhost:8080/BlogApp/index.php';
     } else {
-      return 'http://10.0.2.2:8080/BlogApp1/index.php';
+      return 'http://10.0.2.2:8080/BlogApp/index.php';
     }
   }
 
@@ -20,7 +20,9 @@ class ApiService {
       final res = await http.get(Uri.parse('$baseUrl?path=articles'));
       
       if (res.statusCode != 200) {
-        print('Error: HTTP ${res.statusCode} - ${res.body}');
+        if (kDebugMode) {
+          print('Error: HTTP ${res.statusCode} - ${res.body}');
+        }
         return [];
       }
 
@@ -28,7 +30,9 @@ class ApiService {
       
       // Kiểm tra response format
       if (!body.containsKey('data') || !body.containsKey('success')) {
-        print('Error: Invalid response format - ${res.body}');
+        if (kDebugMode) {
+          print('Error: Invalid response format - ${res.body}');
+        }
         return [];
       }
 
@@ -41,7 +45,9 @@ class ApiService {
           .map((e) => Article.fromJson(e as Map<String, dynamic>))
           .toList();
     } catch (e) {
-      print('Error fetching articles: $e');
+      if (kDebugMode) {
+        print('Error fetching articles: $e');
+      }
       return [];
     }
   }
@@ -64,13 +70,17 @@ class ApiService {
       );
 
       if (res.statusCode != 200) {
-        print('Error updating article: HTTP ${res.statusCode} - ${res.body}');
+        if (kDebugMode) {
+          print('Error updating article: HTTP ${res.statusCode} - ${res.body}');
+        }
         return false;
       }
 
       return true;
     } catch (e) {
-      print('Error updating article: $e');
+      if (kDebugMode) {
+        print('Error updating article: $e');
+      }
       return false;
     }
   }
@@ -94,7 +104,9 @@ class ApiService {
       }
       return null;
     } catch (e) {
-      print('Error fetching user: $e');
+      if (kDebugMode) {
+        print('Error fetching user: $e');
+      }
       return null;
     }
   }
@@ -111,7 +123,9 @@ class ApiService {
       }
       return [];
     } catch (e) {
-      print('Error fetching all users: $e');
+      if (kDebugMode) {
+        print('Error fetching all users: $e');
+      }
       return [];
     }
   }
@@ -125,7 +139,9 @@ class ApiService {
       );
       return res.statusCode == 200;
     } catch (e) {
-      print('Error updating user: $e');
+      if (kDebugMode) {
+        print('Error updating user: $e');
+      }
       return false;
     }
   }
@@ -137,7 +153,9 @@ class ApiService {
       );
       return res.statusCode == 200;
     } catch (e) {
-      print('Error deleting user: $e');
+      if (kDebugMode) {
+        print('Error deleting user: $e');
+      }
       return false;
     }
   }
@@ -167,7 +185,9 @@ class ApiService {
 
       return allComments;
     } catch (e) {
-      print('Error fetching all comments: $e');
+      if (kDebugMode) {
+        print('Error fetching all comments: $e');
+      }
       return [];
     }
   }
@@ -179,7 +199,9 @@ class ApiService {
       );
       return res.statusCode == 200;
     } catch (e) {
-      print('Error deleting comment: $e');
+      if (kDebugMode) {
+        print('Error deleting comment: $e');
+      }
       return false;
     }
   }
@@ -212,7 +234,9 @@ class ApiService {
 
       return allLikes;
     } catch (e) {
-      print('Error fetching all likes: $e');
+      if (kDebugMode) {
+        print('Error fetching all likes: $e');
+      }
       return [];
     }
   }
@@ -224,7 +248,9 @@ class ApiService {
       );
       return res.statusCode == 200;
     } catch (e) {
-      print('Error deleting like: $e');
+      if (kDebugMode) {
+        print('Error deleting like: $e');
+      }
       return false;
     }
   }

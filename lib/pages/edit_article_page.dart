@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import '../models/article.dart';
 import '../services/api_service.dart';
@@ -49,7 +51,7 @@ class _EditArticlePageState extends State<EditArticlePage> {
         'Sports': 'Sports',
         'Education': 'Education',
       };
-      _selectedCategory = categoryMap[category] ?? null;
+      _selectedCategory = categoryMap[category];
     }
   }
 
@@ -130,7 +132,7 @@ class _EditArticlePageState extends State<EditArticlePage> {
     final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: theme.colorScheme.background,
+      backgroundColor: theme.colorScheme.surface,
       appBar: AppBar(
         title: const Text(
           'Chỉnh Sửa Bài Viết',

@@ -214,7 +214,7 @@ class _CommentListPageState extends State<CommentListPage> {
                         Text(comment.content),
                         const SizedBox(height: 8),
                         Text(
-                          '${comment.createdAt}',
+                          comment.createdAt,
                           style: TextStyle(
                             fontSize: 12,
                             color: Colors.grey.shade600,

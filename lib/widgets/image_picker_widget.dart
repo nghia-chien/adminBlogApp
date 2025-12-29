@@ -1,3 +1,6 @@
+// ignore_for_file: deprecated_member_use
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:image_picker/image_picker.dart';
@@ -53,7 +56,9 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
 
       return 'data:$mimeType;base64,$base64String';
     } catch (e) {
-      print('Error picking image: $e');
+      if (kDebugMode) {
+        print('Error picking image: $e');
+      }
       return null;
     }
   }

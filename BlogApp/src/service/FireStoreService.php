@@ -55,7 +55,7 @@ class FireStoreService {
          'summary' => ['stringValue' => $data['summary'] ?? ''],
          'category' => ['stringValue' => $data['category'] ?? ''],
          'author' => ['stringValue' => $data['author'] ?? ''],
-         'views' => ['integerValue' => 0],
+         'views' => ['integerValue' => isset($data['views']) ? (int)$data['views'] : 0],
          'created_at' => ['timestampValue' => date('c')],
      ];
 

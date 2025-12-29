@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -57,7 +58,9 @@ class _LoginPageState extends State<LoginPage> {
         try {
           userData = await ApiService.getUser(user.uid);
         } catch (e) {
-          print('Error fetching user data: $e');
+          if (kDebugMode) {
+            print('Error fetching user data: $e');
+          }
           // Nếu không lấy được userData, đăng xuất và báo lỗi
           await _auth.signOut();
           if (mounted) {
@@ -126,8 +129,12 @@ class _LoginPageState extends State<LoginPage> {
           }
         } catch (signUpError) {
           // Catch any type cast or other errors during sign up
-          print('Sign up error details: $signUpError');
-          print('Error type: ${signUpError.runtimeType}');
+          if (kDebugMode) {
+            print('Sign up error details: $signUpError');
+          }
+          if (kDebugMode) {
+            print('Error type: ${signUpError.runtimeType}');
+          }
           if (signUpError.toString().contains('PigeonUserDetails')) {
             // If it's a type cast error, user might still be created
             // Check if user was actually created
@@ -227,7 +234,9 @@ class _LoginPageState extends State<LoginPage> {
           try {
             userData = await ApiService.getUser(user.uid);
           } catch (e) {
-            print('Error fetching user data: $e');
+            if (kDebugMode) {
+              print('Error fetching user data: $e');
+            }
             // Nếu không lấy được userData, đăng xuất và báo lỗi
             await _auth.signOut();
             if (mounted) {

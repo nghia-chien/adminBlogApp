@@ -45,10 +45,11 @@ if ($path === 'articles') {
     }
 } elseif ($path === 'bookmarks') {
     $controller = new BookmarkController();
-    if ($method === 'GET' && $userId) {
-        $controller->get($userId);
-    } elseif ($method === 'GET' && $action === 'check' && $userId && $articleId) {
+    // Ưu tiên kiểm tra trạng thái bookmark (action=check) trước
+    if ($method === 'GET' && $action === 'check' && $userId && $articleId) {
         $controller->check($userId, $articleId);
+    } elseif ($method === 'GET' && $userId) {
+        $controller->get($userId);
     } elseif ($method === 'POST') {
         $controller->store();
     } elseif ($method === 'DELETE' && $id) {
@@ -59,10 +60,11 @@ if ($path === 'articles') {
     }
 } elseif ($path === 'likes') {
     $controller = new LikeController();
-    if ($method === 'GET' && $articleId) {
-        $controller->get($articleId);
-    } elseif ($method === 'GET' && $action === 'check' && $userId && $articleId) {
+    // Ưu tiên kiểm tra trạng thái like (action=check) trước
+    if ($method === 'GET' && $action === 'check' && $userId && $articleId) {
         $controller->check($userId, $articleId);
+    } elseif ($method === 'GET' && $articleId) {
+        $controller->get($articleId);
     } elseif ($method === 'POST' && $articleId) {
         $controller->store($articleId);
     } elseif ($method === 'DELETE' && $id && $articleId) {

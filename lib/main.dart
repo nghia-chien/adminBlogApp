@@ -59,7 +59,6 @@ class _AuthWrapperState extends State<AuthWrapper> {
       try {
         userData = await ApiService.getUser(user.uid);
       } catch (e) {
-        print('Error fetching user data: $e');
         userData = null;
       }
       

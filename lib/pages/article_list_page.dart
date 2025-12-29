@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import '../models/article.dart';
 import '../services/api_service.dart';
@@ -111,7 +113,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
     final theme = Theme.of(context);
     
     return Scaffold(
-      backgroundColor: theme.colorScheme.background,
+      backgroundColor: theme.colorScheme.surface,
       appBar: AppBar(
         title: Row(
           children: [
