@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import '../models/like.dart';
 import '../services/api_service.dart';
-
+import '../models/article.dart';
+import '../models/user.dart' as models;
 class LikeListPage extends StatefulWidget {
   const LikeListPage({super.key});
 
@@ -11,7 +12,8 @@ class LikeListPage extends StatefulWidget {
 
 class _LikeListPageState extends State<LikeListPage> {
   late Future<List<Like>> _future;
-
+  Map<String, Article> _articlesMap = {};
+  Map<String, models.User> _usersMap = {};
   @override
   void initState() {
     super.initState();
@@ -21,6 +23,22 @@ class _LikeListPageState extends State<LikeListPage> {
   void _load() {
     setState(() {
       _future = ApiService.getAllLikes();
+      _loadArticles();
+      _loadUsers();
+    });
+  }
+
+  Future<void> _loadArticles() async {
+    final articles = await ApiService.getArticles();
+    setState(() {
+      _articlesMap = {for (var a in articles) a.id: a};
+    });
+  }
+
+  Future<void> _loadUsers() async {
+    final users = await ApiService.getAllUsers();
+    setState(() {
+      _usersMap = {for (var u in users) u.id: u};
     });
   }
 
@@ -138,11 +156,11 @@ class _LikeListPageState extends State<LikeListPage> {
                   margin: const EdgeInsets.only(bottom: 12),
                   child: ListTile(
                     leading: const Icon(Icons.favorite, color: Colors.red),
-                    title: Text('User: ${like.userId.substring(0, 8)}...'),
+                    title: Text('User: ${_usersMap[like.userId]?.name ?? like.userId.substring(0, 8)}...'),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Bài viết: ${like.articleId.substring(0, 8)}...'),
+                        Text('Bài viết: ${_articlesMap[like.articleId]?.title ?? like.articleId.substring(0, 8)}...'),
                         Text(
                           'Thời gian: ${like.createdAt}',
                           style: TextStyle(

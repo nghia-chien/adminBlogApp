@@ -262,6 +262,7 @@ class _DashboardPageState extends State<DashboardPage> {
               if (value == 'logout') {
                 await FirebaseAuth.instance.signOut();
                 if (mounted) return;
+                  // ignore: use_build_context_synchronously
                   Navigator.of(context).pushReplacementNamed('/login');
                 
               }
