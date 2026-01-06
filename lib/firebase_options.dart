@@ -46,33 +46,6 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCex-Ls-HeZhyLJ5zCro97IZ1m8eBTe-sI',
-    appId: '1:489845958998:web:d13b2bc3bf7fbe3b0ecef7',
-    messagingSenderId: '489845958998',
-    projectId: 'blogapp-cadca',
-    authDomain: 'blogapp-cadca.firebaseapp.com',
-    storageBucket: 'blogapp-cadca.firebasestorage.app',
-    measurementId: 'G-F4EYREFG62',
-  );
-
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDt3cQByidsF7YYQSEfJShvLk-4yD3RZ0Q',
-    appId: '1:489845958998:android:9404beb4ed7908410ecef7',
-    messagingSenderId: '489845958998',
-    projectId: 'blogapp-cadca',
-    storageBucket: 'blogapp-cadca.firebasestorage.app',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBpWF3bhSXf2ILEbpAUBMDUEQ8Xx_sh4jY',
-    appId: '1:489845958998:ios:c2afe32edb75ff0f0ecef7',
-    messagingSenderId: '489845958998',
-    projectId: 'blogapp-cadca',
-    storageBucket: 'blogapp-cadca.firebasestorage.app',
-    androidClientId: '489845958998-8dvjc7lt5f2omg7jao2j4bgq05ohrj85.apps.googleusercontent.com',
-    iosClientId: '489845958998-52augb7d57nmmhk1pkrsmga86b76v0uq.apps.googleusercontent.com',
-    iosBundleId: 'com.example.blogapp',
-  );
+  // key firebase
 
 }
